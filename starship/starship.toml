@@ -1,0 +1,91 @@
+scan_timeout = 100
+command_timeout = 500
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+format = """
+[](fg:bg1)$username$directory$git_branch$git_state$git_status[](fg:bg1)$cmd_duration
+$character"""
+
+right_format = """\
+$python\
+$rust\
+$golang\
+$package"""
+
+palette = "gruvbox_dark"
+
+[palettes.gruvbox_dark]
+bg1 = "#3c3836"
+fg = "#ebdbb2"
+red = "#fb4934"
+green = "#b8bb26"
+yellow = "#fabd2f"
+blue = "#83a598"
+purple = "#d3869b"
+aqua = "#8ec07c"
+orange = "#fe8019"
+gray = "#928374"
+
+# ---- one quiet pill: who / where / repo state ----
+[username]
+show_always = true
+style_user = "bg:bg1 fg:orange"
+style_root = "bg:bg1 fg:red"
+format = "[  $user]($style)"
+
+[hostname]
+ssh_only = true
+style = "bg:bg1 fg:yellow"
+format = "[@$hostname]($style)"
+
+[directory]
+style = "bg:bg1 fg:yellow"
+format = "[ 󰉋 $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = " "
+style = "bg:bg1 fg:aqua"
+format = "[$symbol$branch]($style)"
+
+[git_status]
+style = "bg:bg1 fg:red"
+format = "[ $all_status$ahead_behind]($style)"
+
+[git_state]
+style = "bg:bg1 fg:purple"
+format = '\([$state( $progress_current of $progress_total)]\) '
+
+# ---- outside the pill: quiet, secondary info ----
+[cmd_duration]
+style = "fg:gray"
+format = " [⏱ $duration]($style)"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold purple)"
+
+[python]
+symbol = " "
+style = "fg:blue"
+format = '[$symbol$virtualenv]($style) '
+
+[rust]
+symbol = "󱘗 "
+style = "fg:orange"
+format = '[$symbol$version]($style) '
+
+[golang]
+symbol = " "
+style = "fg:aqua"
+format = '[$symbol$version]($style) '
+
+[package]
+symbol = ""
+style = "fg:orange"
+format = '[$symbol$version]($style) '
